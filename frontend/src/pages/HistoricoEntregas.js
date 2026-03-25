@@ -136,11 +136,17 @@ export default function HistoricoEntregas() {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-4">
-                    {/* Foto facial se existir */}
+                    {/* Foto do colaborador ou facial */}
                     {entrega.facial_photo_path ? (
                       <img 
                         src={`${getUploadUrl(entrega.facial_photo_path)}`} 
                         alt="Confirmação facial" 
+                        className="w-16 h-16 rounded-lg object-cover border-2 border-emerald-500"
+                      />
+                    ) : entrega.employee_photo_path ? (
+                      <img 
+                        src={`${getUploadUrl(entrega.employee_photo_path)}`} 
+                        alt={entrega.employee_name} 
                         className="w-16 h-16 rounded-lg object-cover border-2 border-slate-200"
                       />
                     ) : (

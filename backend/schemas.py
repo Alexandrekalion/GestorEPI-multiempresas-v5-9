@@ -485,10 +485,11 @@ class DeliveryResponse(BaseModel):
     photo_evidence_path: Optional[str] = None
     facial_match_score: Optional[float] = None
     facial_photo_path: Optional[str] = None
+    employee_photo_path: Optional[str] = None  # Foto do colaborador
     notes: Optional[str] = None
     items: List[dict] = []
     delivered_by: Optional[str] = None
-    delivered_by_name: Optional[str] = None  # NOVO: Nome do responsável pela entrega
+    delivered_by_name: Optional[str] = None  # Nome do responsável pela entrega
     created_at: datetime
 
 # ===================== STOCK =====================

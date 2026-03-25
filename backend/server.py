@@ -2021,7 +2021,22 @@ async def get_deliveries(
         query['created_at']['$lte'] = datetime.fromisoformat(end_date.replace('Z', '+00:00'))
     
     deliveries = await db.deliveries.find(query).sort("created_at", -1).to_list(1000)
-    return [DeliveryResponse(**doc_to_response(d)) for d in deliveries]
+    
+    # Buscar fotos dos colaboradores
+    employee_ids = list(set([d.get('employee_id') for d in deliveries if d.get('employee_id')]))
+    employees = await db.employees.find({"_id": {"$in": [ObjectId(eid) for eid in employee_ids if eid]}}).to_list(1000)
+    emp_photos = {str(e['_id']): e.get('photo_path') for e in employees}
+    
+    # Adicionar foto do colaborador às entregas
+    result = []
+    for d in deliveries:
+        resp = doc_to_response(d)
+        # Se não tiver foto facial, usar foto do colaborador
+        if not resp.get('facial_photo_path') and d.get('employee_id'):
+            resp['employee_photo_path'] = emp_photos.get(d['employee_id'])
+        result.append(DeliveryResponse(**resp))
+    
+    return result
 
 # ===================== STOCK =====================
 
