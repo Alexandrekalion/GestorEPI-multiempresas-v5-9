@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestãoEPI - Demonstração do Sistema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header img.logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .feature-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 0.2rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #10b981;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-title span {
+            background: #10b981;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .screenshot-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .screenshot-info {
+            padding: 1.5rem;
+        }
+        
+        .screenshot-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #10b981;
+        }
+        
+        .screenshot-info p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+        
+        .screenshot-info ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .screenshot-info li {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.3rem;
+        }
+        
+        .credentials-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+        
+        .credentials-box h3 {
+            color: #10b981;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .credential {
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .credential strong {
+            color: #fff;
+        }
+        
+        .credential code {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #10b981;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .tech-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Sistema GestãoEPI</h1>
+        <p>Gestão de Equipamentos de Proteção Individual Multi-Empresas</p>
+        <div style="margin-top: 1rem;">
+            <span class="feature-badge">Multi-Empresa</span>
+            <span class="feature-badge">Reconhecimento Facial</span>
+            <span class="feature-badge">LGPD Compliant</span>
+            <span class="feature-badge">Relatórios PDF/Excel</span>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Login -->
+        <section class="section">
+            <h2 class="section-title"><span>1</span> Tela de Login</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="01_login.jpeg" alt="Tela de Login">
+                    <div class="screenshot-info">
+                        <h3>Acesso ao Sistema</h3>
+                        <p>Login seguro com suporte a e-mail ou nome de usuário. Design moderno com validação de credenciais em tempo real.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Dashboard -->
+        <section class="section">
+            <h2 class="section-title"><span>2</span> Dashboard Principal</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="04_painel_master.jpeg" alt="Dashboard">
+                    <div class="screenshot-info">
+                        <h3>Visão Geral do Sistema</h3>
+                        <ul>
+                            <li>Colaboradores ativos cadastrados</li>
+                            <li>EPIs no sistema</li>
+                            <li>Alertas de estoque baixo</li>
+                            <li>Entregas nos últimos 30 dias</li>
+                            <li>EPIs pendentes de entrega</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Painel Master -->
+        <section class="section">
+            <h2 class="section-title"><span>3</span> Painel Master (Super Admin)</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="05_painel_master_empresas.jpeg" alt="Painel Master">
+                    <div class="screenshot-info">
+                        <h3>Gestão Multi-Empresa</h3>
+                        <ul>
+                            <li>Visão de todas as empresas do sistema</li>
+                            <li>Controle de planos e limites</li>
+                            <li>Bloqueio/ativação de empresas</li>
+                            <li>Estatísticas de uso por empresa</li>
+                            <li>Gestão de backups centralizados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Colaboradores -->
+        <section class="section">
+            <h2 class="section-title"><span>4</span> Gestão de Colaboradores</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="06_colaboradores.jpeg" alt="Colaboradores">
+                    <div class="screenshot-info">
+                        <h3>Cadastro Completo de Funcionários</h3>
+                        <ul>
+                            <li>Dados pessoais e foto</li>
+                            <li>Importação em lote via Excel</li>
+                            <li>Busca avançada por nome, CPF, matrícula</li>
+                            <li>Filtros por empresa e setor</li>
+                            <li>Cadastro de biometria facial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- EPIs -->
+        <section class="section">
+            <h2 class="section-title"><span>5</span> Cadastro de EPIs</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="07_cadastro_epi.jpeg" alt="Cadastro EPI">
+                    <div class="screenshot-info">
+                        <h3>Controle Completo de Equipamentos</h3>
+                        <ul>
+                            <li>Cadastro com CA (Certificado de Aprovação)</li>
+                            <li>Controle de estoque em tempo real</li>
+                            <li>Validade e vencimento</li>
+                            <li>Vinculação com fornecedores</li>
+                            <li>Filtros: estoque baixo, próximo vencimento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Kits -->
+        <section class="section">
+            <h2 class="section-title"><span>6</span> Kits de EPIs</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="08_kits.jpeg" alt="Kits">
+                    <div class="screenshot-info">
+                        <h3>Agrupamento por Função</h3>
+                        <ul>
+                            <li>Kits por setor (Produção, Soldagem, Altura, etc.)</li>
+                            <li>Entrega rápida de kits completos</li>
+                            <li>Impressão de etiquetas</li>
+                            <li>Visualização de itens inclusos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Entrega -->
+        <section class="section">
+            <h2 class="section-title"><span>7</span> Entrega com Reconhecimento Facial</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="09_entrega_epi.jpeg" alt="Entrega EPI">
+                    <div class="screenshot-info">
+                        <h3>Verificação Biométrica</h3>
+                        <ul>
+                            <li>Identificação automática por rosto</li>
+                            <li>Confirmação de identidade do colaborador</li>
+                            <li>Registro de data/hora e responsável</li>
+                            <li>Baixa automática no estoque</li>
+                            <li>Suporte a devoluções</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fornecedores -->
+        <section class="section">
+            <h2 class="section-title"><span>8</span> Fornecedores</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="11_fornecedores.jpeg" alt="Fornecedores">
+                    <div class="screenshot-info">
+                        <h3>Gestão de Fornecedores de EPI</h3>
+                        <ul>
+                            <li>Cadastro com CNPJ e contatos</li>
+                            <li>Vinculação com EPIs</li>
+                            <li>Impressão de relatórios</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Relatórios -->
+        <section class="section">
+            <h2 class="section-title"><span>9</span> Relatórios Avançados</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="12_relatorios.jpeg" alt="Relatórios">
+                    <div class="screenshot-info">
+                        <h3>Análises e Exportações</h3>
+                        <ul>
+                            <li>Entregas por período</li>
+                            <li>Consumo de EPIs por setor</li>
+                            <li>Alertas de estoque crítico</li>
+                            <li>Vencimentos próximos</li>
+                            <li>Exportação PDF e Excel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- LGPD -->
+        <section class="section">
+            <h2 class="section-title"><span>10</span> Conformidade LGPD</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="13_lgpd.jpeg" alt="LGPD">
+                    <div class="screenshot-info">
+                        <h3>Proteção de Dados</h3>
+                        <ul>
+                            <li>Controle de consentimentos biométricos</li>
+                            <li>Histórico completo de autorizações</li>
+                            <li>Indicadores de conformidade</li>
+                            <li>Registro de IP e data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Usuários -->
+        <section class="section">
+            <h2 class="section-title"><span>11</span> Gestão de Usuários</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="14_usuarios.jpeg" alt="Usuários">
+                    <div class="screenshot-info">
+                        <h3>Perfis de Acesso</h3>
+                        <ul>
+                            <li><strong>Administrador:</strong> Acesso total ao sistema</li>
+                            <li><strong>Gestor:</strong> Operações sem gerenciar perfis</li>
+                            <li><strong>RH:</strong> Colaboradores e usuários</li>
+                            <li><strong>Segurança do Trabalho:</strong> EPIs e kits</li>
+                            <li><strong>Almoxarifado:</strong> Entregas e movimentações</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Alertas -->
+        <section class="section">
+            <h2 class="section-title"><span>12</span> Central de Alertas</h2>
+            <div class="gallery">
+                <div class="screenshot-card full-width">
+                    <img src="15_alertas.jpeg" alt="Alertas">
+                    <div class="screenshot-info">
+                        <h3>Monitoramento Proativo</h3>
+                        <ul>
+                            <li>EPIs obrigatórios pendentes</li>
+                            <li>Trocas periódicas vencidas</li>
+                            <li>Estoque crítico</li>
+                            <li>CA próximo do vencimento</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Credenciais -->
+        <div class="credentials-box">
+            <h3>Credenciais de Demonstração</h3>
+            <div class="credential">
+                <strong>Super Admin (Painel Master)</strong><br>
+                Usuário: <code>superadmin</code> | Senha: <code>Super@2026!</code>
+            </div>
+            <div class="credential">
+                <strong>Admin Empresa</strong><br>
+                Usuário: <code>admin</code> | Senha: <code>Admin@2026!</code>
+            </div>
+        </div>
+        
+        <!-- Tech Stack -->
+        <section class="section" style="text-align: center;">
+            <h2 class="section-title" style="justify-content: center;">Tecnologias</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">React 19</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">MongoDB</span>
+                <span class="tech-badge">Tailwind CSS</span>
+                <span class="tech-badge">face-api.js</span>
+                <span class="tech-badge">ReportLab</span>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
