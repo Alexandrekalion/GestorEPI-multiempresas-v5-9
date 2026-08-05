@@ -75,7 +75,7 @@ flowchart LR
 - `backend/`: API, autenticacao, banco de dados, schemas, seeds, uploads e testes.
 - `frontend/`: interface web, componentes, paginas e contexto de autenticacao.
 - `demo_screenshots/`: materiais demonstrativos existentes no repositorio.
-- `memory/`: documentos internos existentes nesta versao.
+- `memory/`: artefatos de acompanhamento existentes nesta versao.
 
 ## Status
 
@@ -83,6 +83,6 @@ Versao multiempresa mais recente identificada na familia GestaoEPI. Deve ser com
 
 ## Autor
 
-Desenvolvido por Michele Santana -- Kalion Tecnologia
+Desenvolvido por Michele Santana — Kalion Tecnologia
 
 Perfil profissional: https://github.com/Tr3mbolon4
