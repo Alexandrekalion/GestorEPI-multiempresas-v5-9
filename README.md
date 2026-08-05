@@ -1,33 +1,61 @@
 # GestorEPI Multiempresas V5.9
 
-Sistema web multiempresa para gestao de EPIs, colaboradores, estoque, entregas, kits por setor, alertas operacionais, LGPD e administracao centralizada.
-
-> Status: em revisao para organizacao profissional e saneamento de dados sensiveis.
+Sistema web multiempresa para gestao de EPIs, colaboradores, empresas, fornecedores, estoque, kits, entregas, historico, alertas e relatorios.
 
 ## Visao Geral
 
-O GestorEPI Multiempresas permite controlar operacoes de EPI em mais de uma empresa, separando cadastros, usuarios, colaboradores, EPIs, fornecedores e entregas por contexto empresarial.
+O projeto centraliza rotinas de seguranca do trabalho relacionadas a EPIs em uma plataforma com separacao por empresas. A aplicacao possui frontend em React, API em FastAPI e persistencia em MongoDB.
 
-## Funcionalidades
+## Problema Resolvido
 
-- Painel master para gestao de empresas.
-- Autenticacao com perfis de acesso.
-- Cadastro de colaboradores e empresas.
-- Controle de EPIs, estoque, fornecedores e ferramentas.
-- Entrega, devolucao e historico de EPIs.
-- Kits obrigatorios por setor.
-- Alertas e relatorios operacionais.
-- Modulo LGPD.
-- Suporte a evidencias e autenticacao de fichas.
+O sistema atende operacoes que precisam controlar entregas de EPI, manter historico por colaborador, organizar estoque e consultar informacoes por empresa, reduzindo dependencia de planilhas e registros manuais.
 
-## Tecnologias
+## Principais Funcionalidades
+
+### Funcionalidades Disponiveis
+
+- Autenticacao e perfis de usuario.
+- Painel master multiempresa.
+- Cadastro de empresas.
+- Cadastro de colaboradores.
+- Cadastro de EPIs e fornecedores.
+- Gestao de estoque.
+- Kits de EPI.
+- Registro de entregas.
+- Historico de entregas.
+- Relatorios e dashboards.
+- Recursos de documentacao, LGPD e alertas identificados na interface.
+
+### Funcionalidades Em Desenvolvimento
+
+- Melhorias de alertas, kits e rastreabilidade aparecem em telas, testes e documentos do repositorio.
+
+### Funcionalidades Planejadas
+
+- Informacao nao confirmada no conteudo atual do repositorio.
+
+## Como Funciona
+
+```text
+Usuario acessa o sistema
+-> realiza autenticacao
+-> seleciona empresa ou modulo operacional
+-> cadastra colaboradores, EPIs, fornecedores e kits
+-> registra entregas e acompanha estoque
+-> a API processa e consulta os dados
+-> MongoDB armazena as informacoes
+-> dashboards e relatorios apresentam o resultado
+```
+
+## Tecnologias Utilizadas
 
 - Python
 - FastAPI
 - MongoDB
 - React
 - Tailwind CSS
-- Radix UI
+- face-api.js
+- html5-qrcode
 - ReportLab
 - OpenPyXL
 
@@ -35,27 +63,26 @@ O GestorEPI Multiempresas permite controlar operacoes de EPI em mais de uma empr
 
 ```mermaid
 flowchart LR
-    Master["Painel Master"] --> Frontend["Frontend React"]
-    Users["Usuarios operacionais"] --> Frontend
-    Frontend --> API["API FastAPI"]
-    API --> Mongo["MongoDB multiempresa"]
-    API --> Uploads["Uploads locais"]
-    API --> Reports["Relatorios e documentos"]
+    Usuario["Usuario"] --> Web["Frontend React"]
+    Web --> API["API FastAPI"]
+    API --> DB["MongoDB"]
+    API --> Uploads["Uploads"]
+    API --> Docs["Relatorios e documentos"]
 ```
 
-## Configuracao
+## Estrutura Do Projeto
 
-Use `.env.example` como base e defina segredos reais somente no ambiente seguro.
+- `backend/`: API, autenticacao, banco de dados, schemas, seeds, uploads e testes.
+- `frontend/`: interface web, componentes, paginas e contexto de autenticacao.
+- `demo_screenshots/`: materiais demonstrativos existentes no repositorio.
+- `memory/`: documentos internos existentes nesta versao.
 
-Nunca versione `.env`, backups, bancos de dados, hashes de senha, fotos reais, CPFs, dados biometricos ou informacoes internas de clientes.
+## Status
 
-## Seguranca
+Versao multiempresa mais recente identificada na familia GestaoEPI. Deve ser comparada com `GestaoEPI-V5.1.0-NOVO-01` antes de definir qual sera promovida como principal no portfolio.
 
-Esta branch remove backups e uploads versionados do conteudo atual e reforca o `.gitignore`. A remocao nao limpa historico Git antigo.
+## Autor
 
-Veja [SECURITY.md](SECURITY.md) e [docs/security-audit.md](docs/security-audit.md).
+Desenvolvido por Michele Santana -- Kalion Tecnologia
 
-## Licenca
-
-Projeto proprietario. Todos os direitos reservados.
-
+Perfil profissional: https://github.com/Tr3mbolon4
