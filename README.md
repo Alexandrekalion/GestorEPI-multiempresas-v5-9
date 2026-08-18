@@ -83,6 +83,6 @@ Versao multiempresa mais recente identificada na familia GestaoEPI. Deve ser com
 
 ## Autor
 
-Desenvolvido por Michele Santana — Kalion Tecnologia
+Desenvolvido por Alexandre Santana dos Santos — Kalion Tecnologia
 
 Perfil profissional: https://github.com/Tr3mbolon4
